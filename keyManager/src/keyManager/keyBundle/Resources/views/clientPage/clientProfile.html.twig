@@ -1,0 +1,20 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+<br>
+
+<form action="{{ path('ClientProfile_homePage') }}" method="post">
+    <input type="text" name="rechercherClient" placeholder="rechercher un client" required>
+    <button type="submit" name="valider">rechercher un client</button>
+</form>
+<br>
+<a href="{{ path('AddClient_ClientProfile') }}">ajouter un client</a>
+<br>
+
+<table>
+    <thead>Societie du Client</thead>
+    {% for client in clients %}
+        <tr><td> {{ client.clientCompany }} </td></tr>
+    {% else %}
+        <tr><td>aucune clients ajouté</td></tr>
+    {% endfor %}
+</table>

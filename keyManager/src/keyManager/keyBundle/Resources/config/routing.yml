@@ -1,0 +1,45 @@
+key_managerkey_homepage:
+    path:     /
+    defaults: { _controller: keyManagerkeyBundle:homePage:index }
+
+login:
+    path:     /login
+    defaults: { _controller: keyManagerkeyBundle:homePage:login }
+
+login_check:
+    pattern:    /login_check
+
+logout:
+    path: /logout
+
+signup:
+    path: /signup
+    defaults: { _controller: keyManagerkeyBundle:homePage:signup }
+
+ClientProfile_homePage:
+    path: /login/clientProfile
+    defaults: { _controller: keyManagerkeyBundle:clientPage:clientProfile }
+
+AddClient_ClientProfile:
+    path: /login/clientProfile/addClient
+    defaults: { _controller: keyManagerkeyBundle:clientPage:addClient }
+
+ClefProfile_homePage:
+    path: /login/clefProfile
+    defaults: { _controller: keyManagerkeyBundle:clefPage:clefProfile }
+
+TpeProfile_homePage:
+    path: /login/tpeProfile
+    defaults: { _controller: keyManagerkeyBundle:tpePage:tpeProfile }
+
+AddTpe_TpeProfile:
+    path: /login/tpeProfile/addTpe
+    defaults: { _controller: keyManagerkeyBundle:tpePage:addTpe }
+
+
+HistoriqueProfile_homePage:
+    path: /login/historiqueProfile
+    defaults: { _controller: keyManagerkeyBundle:historiquePage:historiqueProfile }
+
+
+

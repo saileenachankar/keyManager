@@ -1,0 +1,5 @@
+key_managerkey:
+    resource: "@keyManagerkeyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

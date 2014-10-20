@@ -1,0 +1,29 @@
+keyManager\keyBundle\Entity\tpenew:
+    type: entity
+    table: null
+    repositoryClass: keyManager\keyBundle\Entity\tpenewRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        tpeNum:
+            type: string
+            length: '50'
+            column: tpe_num
+
+    uniqueConstraints:
+        tpenum:
+            columns: [tpeNum]
+
+    manyToOne:
+        clientNew:
+            targetEntity: ClientNew
+            inversedBy: tpenews
+            joinColum:
+                name: clientNew_id
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }

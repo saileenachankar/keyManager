@@ -1,0 +1,24 @@
+keyManager\keyBundle\Entity\Role:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '100'
+        role:
+            type: string
+            length: '40'
+            unique: true
+
+    #ManyToMany:
+     #   users:
+      #      targetEntity: User
+       #     inversedBy: roles
+
+    lifecycleCallbacks: {  }

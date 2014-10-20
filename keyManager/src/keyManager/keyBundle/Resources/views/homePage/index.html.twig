@@ -1,0 +1,19 @@
+Hello!
+
+{% if app.user %}
+    {{ app.user.username }}
+    <a href="{{ path('logout') }}">disconnect</a>
+    <a href="{{ path('ClientProfile_homePage') }}">Client</a>
+    <br/>
+    <a href="{{ path('ClefProfile_homePage') }}">Clef</a>
+    <br/>
+    <a href="{{ path('TpeProfile_homePage') }}">TPE</a>
+    <br/>
+    <a href="{{ path('HistoriqueProfile_homePage') }}">Historique</a>
+
+{% else %}
+    <a href="{{ path('login') }}">login</a>
+    <a href="{{ path('signup') }}">signup</a>
+{% endif %}
+
+

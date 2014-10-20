@@ -1,0 +1,33 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+<br>
+{% if error == 'yes' %}
+    Ce numero du TPE déjà existe
+{% endif %}
+<br>
+
+<form action="{{ path('AddTpe_TpeProfile') }}" method="post">
+    <table>
+
+        <tr>
+            <td>saisir un numero de tpe</td>
+            <td>selectionner une companie</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" required name="numTPE" placeholder="*numero du TPE">
+            </td>
+            <td>
+                <select name="client_company" id="companyId">
+                    <option value="" selected></option>
+                    {% for clientname in clientnames %}
+                        <option value='{{ clientname.id }}'> {{ clientname.clientCompany }} </option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <button type="submit" name="valider">Valider</button>
+            </td>
+            </tr>
+        </table>
+    </form>

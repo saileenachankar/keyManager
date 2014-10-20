@@ -1,0 +1,7 @@
+parameters:
+#    key_managerkey.example.class: keyManager\keyBundle\Example
+
+services:
+#    key_managerkey.example:
+#        class: %key_managerkey.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,13 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+
+<br>
+{% if error == 'yes' %}
+    Ce client déjà existe
+{% endif %}
+
+<form action="{{ path('AddClient_ClientProfile') }}" method="post">
+    <input type="text" name="add_client" placeholder="*ajouter un client" required>
+    <button type="submit" name="valider">ajouter du client</button>
+</form>
+

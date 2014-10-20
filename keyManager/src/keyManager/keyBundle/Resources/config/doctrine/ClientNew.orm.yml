@@ -1,0 +1,22 @@
+'keyManager\keyBundle\Entity\ClientNew':
+    type: entity
+    table: null
+    repositoryClass: keyManager\keyBundle\Entity\ClientNewRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        clientCompany:
+            type: string
+            length: '50'
+            column: client_company
+
+    oneToMany:
+        tpenews:
+            targetEntity: tpenew
+            mappedBy: clientNew
+
+    lifecycleCallbacks: {  }
