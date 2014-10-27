@@ -80,4 +80,32 @@ class tpenew
     {
         return $this->clientNew;
     }
+    /**
+     * @var \keyManager\keyBundle\Entity\p
+     */
+    private $cascade;
+
+
+    /**
+     * Set cascade
+     *
+     * @param \keyManager\keyBundle\Entity\p $cascade
+     * @return tpenew
+     */
+    public function setCascade(\keyManager\keyBundle\Entity\p $cascade = null)
+    {
+        $this->cascade = $cascade;
+
+        return $this;
+    }
+
+    /**
+     * Get cascade
+     *
+     * @return \keyManager\keyBundle\Entity\p 
+     */
+    public function getCascade()
+    {
+        return $this->cascade;
+    }
 }

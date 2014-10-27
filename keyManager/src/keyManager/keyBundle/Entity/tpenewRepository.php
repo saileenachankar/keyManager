@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class tpenewRepository extends EntityRepository
 {
+    public function findByclientname($id)
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->select('t')
+            ->where('t.clientNew = :id')
+            ->setParameter('id',$id);
+        return $qb->getQuery()
+            ->getResult();
+
+    }
 }

@@ -19,9 +19,8 @@ class tpePageController extends Controller
         $error = '';
         $em = $this->getDoctrine()->getManager();
         $tpe = new tpenew();
-        $client = new ClientNew();
-        $post = Request::createFromGlobals();
         $clientnames = $em->getRepository('keyManagerkeyBundle:ClientNew')->findAll();
+        $post = Request::createFromGlobals();
         if($post->request->has('valider'))
         {
             $tpenum = $post->request->get('numTPE');
@@ -30,16 +29,16 @@ class tpePageController extends Controller
             if($tpenumcheck)
             {
                 $error = 'yes';
-                return $this->render('keyManagerkeyBundle:tpePage:addTpe.html.twig', array('error' => $error));
+                return $this->render('keyManagerkeyBundle:tpePage:addTpe.html.twig', array('clientnames'=> $clientnames,'error' => $error));
             }
             else
             {
-                $client->getId($clientname);
+                $client = $em->getRepository('keyManagerkeyBundle:ClientNew')->find($clientname);
                 $tpe->setTpeNum($tpenum);
                 $tpe->setClientNew($client);
                 $em->persist($tpe);
                 $em->flush();
-                return $this->redirect($this->generateUrl("TpeProfile_homePage"));
+                return $this->redirect($this->generateUrl("UpdateClient_ClientProfile"));
             }
         }
 

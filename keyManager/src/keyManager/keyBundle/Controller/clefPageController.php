@@ -15,5 +15,10 @@ class clefPageController extends Controller
     {
         return $this->render('keyManagerkeyBundle:clefPage:clefProfile.html.twig');
     }
+
+    public function addKeyAction()
+    {
+        return $this->render('keyManagerkeyBundle:clefPage:addKey.html.twig');
+    }
 }
   

@@ -97,4 +97,5 @@ class ClientNew
     {
         return $this->tpenews;
     }
+
 }

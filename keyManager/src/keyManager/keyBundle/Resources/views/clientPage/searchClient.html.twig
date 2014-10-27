@@ -1,0 +1,44 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+
+<br>
+<table>
+    <tr><td>Societe du client</td></tr>
+    <tr><td><a href="{{ path('UpdateClient_ClientProfile',{'id':client.id}) }}">{{ client.clientCompany }}</a></td></tr>
+    <tr>
+        <td>TPE</td>
+        <td>Clef</td>
+        <td>Date début de validitée</td>
+        <td>Date fin de validitée</td>
+        <td>Active</td>
+    </tr>
+    {% for tpe in tpes %}
+        <tr>
+        <td>{{ tpe.tpeNum }}</td>
+        {% set key = tpe.id %}
+        {% if keys( key ) %}
+            <td>keys.keyName</td>
+            <td>keys.startDate</td>
+            <td>keys.endDate</td>
+            {% if keys.keyValid == 1 %}
+                <td><input type="checkbox" name="checkbox[]" value='keys.id' checked ></td>
+            {% else %}
+                <td><input type="checkbox" name="checkbox[]" value='keys.id' ></td>
+            {% endif %}
+        {% else %}
+            <td>Ce TPE n\'a pas de clef<br/></td>
+            <td></td>
+            <td></td>
+            <td><a href="">ajouter une clef</a></td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    <tr>
+        <td><a href="">ajouter un TPE</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <input type="hidden" name="idC" value='client.id'>
+        <td><button type="submit" name="valid">Activer/desactiver clef(s)</button> </td>
+    </tr>
+</table>

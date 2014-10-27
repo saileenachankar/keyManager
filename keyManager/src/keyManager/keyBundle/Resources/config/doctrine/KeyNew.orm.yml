@@ -1,0 +1,28 @@
+keyManager\keyBundle\Entity\KeyNew:
+    type: entity
+    table: null
+    repositoryClass: keyManager\keyBundle\Entity\KeyNewRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        startDate:
+            type: date
+        endDate:
+            type: date
+        keyName:
+            type: string
+            length: '50'
+        keyValid:
+            type: boolean
+
+    oneToOne:
+        tpenew:
+            targetEntity: tpenew
+            joinColum:
+                nullable: false
+
+    lifecycleCallbacks: {  }

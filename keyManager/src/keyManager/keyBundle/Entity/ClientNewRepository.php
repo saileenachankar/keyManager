@@ -42,4 +42,5 @@ class ClientNewRepository extends EntityRepository
         return $qb->getQuery();
 
     }
+
 }

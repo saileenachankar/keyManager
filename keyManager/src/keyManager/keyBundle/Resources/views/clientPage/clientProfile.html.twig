@@ -13,7 +13,7 @@
 <table>
     <thead>Societie du Client</thead>
     {% for client in clients %}
-        <tr><td> {{ client.clientCompany }} </td></tr>
+        <tr><td><a href="{{ path('SearchClient_ClientProfile', {'id':client.id}) }}"> {{ client.clientCompany }}</a> </td></tr>
     {% else %}
         <tr><td>aucune clients ajouté</td></tr>
     {% endfor %}

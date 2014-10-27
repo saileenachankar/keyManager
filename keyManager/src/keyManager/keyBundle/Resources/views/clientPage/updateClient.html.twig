@@ -1,0 +1,10 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+<br>
+{% if error == 'yes' %}
+    nom existe deja, saisissez un autre nom
+{% endif %}
+<br>
+
+{{ form(form) }}
+

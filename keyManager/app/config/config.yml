@@ -64,3 +64,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+services:
+    querytableExtension:
+        class: keyManager\keyBundle\Twig\Extension\querykeytableExtension
+        tags:
+            - {name: twig.extension}
+        arguments:
+            doctrine: "@doctrine"

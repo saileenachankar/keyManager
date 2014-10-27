@@ -24,9 +24,24 @@ AddClient_ClientProfile:
     path: /login/clientProfile/addClient
     defaults: { _controller: keyManagerkeyBundle:clientPage:addClient }
 
+SearchClient_ClientProfile:
+    path: /login/clientProfile/searchClient/{id}
+    defaults: { _controller: keyManagerkeyBundle:clientPage:searchClient }
+
+UpdateClient_ClientProfile:
+    path: /login/clientProfile/UpdateClient/{id}
+    defaults: { _controller: keyManagerkeyBundle:clientPage:updateClient }
+    requirements:
+            _method:  GET|POST
+            id: \d+
+
 ClefProfile_homePage:
     path: /login/clefProfile
     defaults: { _controller: keyManagerkeyBundle:clefPage:clefProfile }
+
+AddKey_ClefProfile:
+    path: /login/clefProfile/addKey
+    defaults: {_controller: keyManagerkeyBundle:clefPage:addKey }
 
 TpeProfile_homePage:
     path: /login/tpeProfile
@@ -40,6 +55,8 @@ AddTpe_TpeProfile:
 HistoriqueProfile_homePage:
     path: /login/historiqueProfile
     defaults: { _controller: keyManagerkeyBundle:historiquePage:historiqueProfile }
+
+
 
 
 
