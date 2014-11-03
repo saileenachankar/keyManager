@@ -26,14 +26,21 @@ AddClient_ClientProfile:
 
 SearchClient_ClientProfile:
     path: /login/clientProfile/searchClient/{id}
-    defaults: { _controller: keyManagerkeyBundle:clientPage:searchClient }
+    defaults: { _controller: keyManagerkeyBundle:clientPage:searchClient, id: 1 }
 
 UpdateClient_ClientProfile:
     path: /login/clientProfile/UpdateClient/{id}
-    defaults: { _controller: keyManagerkeyBundle:clientPage:updateClient }
+    defaults: { _controller: keyManagerkeyBundle:clientPage:updateClient, id : 1 }
     requirements:
             _method:  GET|POST
             id: \d+
+
+DeleteClient_ClientProfile:
+    path: /login/clientProfile/DeleteClient/{id}
+    defaults: { _controller: keyManagerkeyBundle:clientPage:DeleteClient, id: 0 }
+    requirements:
+                _method:  GET|POST
+                id: \d+
 
 ClefProfile_homePage:
     path: /login/clefProfile
@@ -41,15 +48,27 @@ ClefProfile_homePage:
 
 AddKey_ClefProfile:
     path: /login/clefProfile/addKey
-    defaults: {_controller: keyManagerkeyBundle:clefPage:addKey }
+    defaults: { _controller: keyManagerkeyBundle:clefPage:addKey }
+
+UpdateKey_ClefProfile:
+    path: /login/clefProfile/updateKey/{id}
+    defaults: { _controller: keyManagerkeyBundle:clefPage:updateKey, id: 1 }
+
+tpe_ClefProfile:
+    path: /login/clefProfile/tpe
+    defaults: { _controller: keyManagerkeyBundle:clefPage:tpe }
 
 TpeProfile_homePage:
     path: /login/tpeProfile
     defaults: { _controller: keyManagerkeyBundle:tpePage:tpeProfile }
 
 AddTpe_TpeProfile:
-    path: /login/tpeProfile/addTpe
-    defaults: { _controller: keyManagerkeyBundle:tpePage:addTpe }
+    path: /login/tpeProfile/addTpe/{id}
+    defaults: { _controller: keyManagerkeyBundle:tpePage:addTpe, id: 0 }
+
+UpdateTpe_TpeProfile:
+    path: /login/tpeProfile/updateTpe/{id}
+    defaults: { _controller: keyManagerkeyBundle:tpePage:updateTpe, id: 1 }
 
 
 HistoriqueProfile_homePage:

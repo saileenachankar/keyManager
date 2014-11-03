@@ -80,32 +80,84 @@ class tpenew
     {
         return $this->clientNew;
     }
+//    /**
+//     * @var \keyManager\keyBundle\Entity\p
+//     */
+//    private $cascade;
+//
+//
+//    /**
+//     * Set cascade
+//     *
+//     * @param \keyManager\keyBundle\Entity\p $cascade
+//     * @return tpenew
+//     */
+//    public function setCascade(\keyManager\keyBundle\Entity\p $cascade = null)
+//    {
+//        $this->cascade = $cascade;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get cascade
+//     *
+//     * @return \keyManager\keyBundle\Entity\p
+//     */
+//    public function getCascade()
+//    {
+//        return $this->cascade;
+//    }
+
+    function __toString()
+    {
+        return $this->getTpeNum();
+    }
+
+
     /**
-     * @var \keyManager\keyBundle\Entity\p
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $cascade;
-
+    private $keyNews;
 
     /**
-     * Set cascade
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->keyNews = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add keyNews
      *
-     * @param \keyManager\keyBundle\Entity\p $cascade
+     * @param \keyManager\keyBundle\Entity\KeyNew $keyNews
      * @return tpenew
      */
-    public function setCascade(\keyManager\keyBundle\Entity\p $cascade = null)
+    public function addKeyNews(\keyManager\keyBundle\Entity\KeyNew $keyNews)
     {
-        $this->cascade = $cascade;
+        $this->keyNews[] = $keyNews;
 
         return $this;
     }
 
     /**
-     * Get cascade
+     * Remove keyNews
      *
-     * @return \keyManager\keyBundle\Entity\p 
+     * @param \keyManager\keyBundle\Entity\KeyNew $keyNews
      */
-    public function getCascade()
+    public function removeKeyNews(\keyManager\keyBundle\Entity\KeyNew $keyNews)
     {
-        return $this->cascade;
+        $this->keyNews->removeElement($keyNews);
+    }
+
+    /**
+     * Get keyNews
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getKeyNews()
+    {
+        return $this->keyNews;
     }
 }

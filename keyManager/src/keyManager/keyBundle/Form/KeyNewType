@@ -17,12 +17,12 @@ use Symfony\Component\Validator\Constraints\Null;
 
 class KeyNewType extends AbstractType
 {
-    protected $em;
-
-    function __construct(EntityManager $em)
-    {
-        $this->em = $em;
-    }
+//    protected $em;
+//
+//    function __construct(EntityManager $em)
+//    {
+//        $this->em = $em;
+//    }
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -39,7 +39,7 @@ class KeyNewType extends AbstractType
             ->add('startDate', 'date', array('widget' => 'single_text'))
             ->add('endDate', 'date', array('widget' => 'single_text'))
             ->add('keyName')
-            ->add('keyValid', 'checkbox', array('required'=>false))
+            ->add('keyValid')
           //  ->add('tpenew', new tpenewType())
 
 //
@@ -51,9 +51,9 @@ class KeyNewType extends AbstractType
 
            /* ->add('tpenew', 'collection', array('type'=> 'entity', 'options'=>array('class'=>'keyManagerkeyBundle:tpenew')))*/
 
-            ->add('ajouter une clef', 'submit');
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmit'));
+            ->add('ajouter une clef', 'submit')
+        ->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'))
+        ->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmit'));
 
 //        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event)
 //            {
@@ -86,21 +86,18 @@ class KeyNewType extends AbstractType
 
     protected function addElements(FormInterface $form, ClientNew  $clientNew=null)
     {
-        $submit = $form->get('ajouter une clef');
-        $form->remove('ajouter une clef');
-
         $form->add('clientNew', 'entity', array(
                 'data' => $clientNew,
                 'empty_value' => '-- Choose --',
                 'class' => 'keyManagerkeyBundle:ClientNew',
-                'mapped' => false)
+                'mapped' => 'false')
         );
 
         $tpes=array();
         if($clientNew)
         {
-            $repo = $this->em->getRepository('keyManagerkeyBundle:tpenew');
-            $tpes = $repo->findByclientNew($clientNew);
+            $repo = $this->getEntityManager()->getRepository('keyManagerkeyBundle:tpenew');
+            $tpes = $repo->findbycustom($clientNew);
         }
 
         $form->add('tpenew', 'entity', array(
@@ -108,8 +105,6 @@ class KeyNewType extends AbstractType
                 'class' => 'keyManagerkeyBundle:tpenew',
                 'choices' => $tpes,
             ));
-
-        $form->add($submit);
     }
 
     function onPreSubmit(FormEvent $event) {
@@ -129,7 +124,7 @@ class KeyNewType extends AbstractType
         $clientNew = $key->getTpenew() ? $key->getTpenew()->getClientNew() : null;
         $this->addElements($form, $clientNew);
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

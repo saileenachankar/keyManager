@@ -22,4 +22,32 @@ class tpenewRepository extends EntityRepository
             ->getResult();
 
     }
+
+    public function findByClientID($clientNew_id)
+    {
+//        $qb2 = $this->getEntityManager()->createQuery("
+//            SELECT tpenew
+//            FROM keyManagerkeyBundle:tpenew tpenew
+//            left JOIN tpenew.clientNew ClientNew
+//            WHERE ClientNew.id = :clientNew_id
+//        ")->setParameter('clientNew_id', $clientNew_id);
+
+        $qb = $this->createQueryBuilder('t')
+            ->select('t')
+            ->leftJoin('t.clientNew', 'ClientNew')
+            ->where('ClientNew.id = :clientNew_id')
+            ->setParameter('clientNew_id', $clientNew_id);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findbycustom($clientNew)
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->select('t.tpeNum')
+            ->where('t.clientNew = :clientNew')
+            ->setParameter('clientNew', $clientNew);
+
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -19,7 +19,11 @@
             </td>
             <td>
                 <select name="client_company" id="companyId">
-                    <option value="" selected></option>
+                    {% if selectedclient != null %}
+                        <option value='{{ selectedclient.id }}' selected> {{ selectedclient.clientCompany }} </option>
+                    {% else %}
+                        <option value="" selected></option>
+                    {% endif %}
                     {% for clientname in clientnames %}
                         <option value='{{ clientname.id }}'> {{ clientname.clientCompany }} </option>
                     {% endfor %}

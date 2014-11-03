@@ -1,0 +1,26 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+<br>
+{% if error == 'yes' %}
+    nom existe deja, saisissez un autre nom
+{% endif %}
+<br>
+
+<table>
+    <form action="{{ path('UpdateKey_ClefProfile', {'id':key.id}) }}" method="post">
+    <tr>
+        <td>Modifier le nom de la clef</td>
+        <td>Modifier la date de deb. de validitée</td>
+        <td>Modifier la date de fin de validitée</td>
+    </tr>
+    <tr>
+        {% set startkey = key.startDate %}
+        <td><input type="text" required name="newKey" value="{{ key.keyName }}"></td>
+        <td><input type="date" name="keyStart" value={{ key.startDate|date('Y-m-d') }}></td>
+        <td><input type="date" name="keyStop" value="{{ key.endDate|date('Y-m-d') }}"></td>
+    </tr>
+    <tr>
+        <button type="submit" name="valider">Valider</button>
+    </tr>
+    </form>
+</table>

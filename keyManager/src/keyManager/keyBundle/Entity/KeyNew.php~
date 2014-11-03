@@ -34,6 +34,16 @@ class KeyNew
      */
     private $keyValid;
 
+    /**
+     * @var \keyManager\keyBundle\Entity\tpenew
+     */
+    private $tpenew;
+
+//    public function __construct()
+//    {
+//        $this->tpenew = new \Doctrine\Common\Collections\ArrayCollection();
+//    }
+
 
     /**
      * Get id
@@ -136,11 +146,6 @@ class KeyNew
     {
         return $this->keyValid;
     }
-    /**
-     * @var \keyManager\keyBundle\Entity\tpenew
-     */
-    private $tpenew;
-
 
     /**
      * Set tpenew
@@ -156,6 +161,30 @@ class KeyNew
     }
 
     /**
+     * Add tpenew
+     *
+     * @param \keyManager\keyBundle\Entity\tpenew $tpenew
+     * @return KeyNew
+     */
+    public function addTpenew(\keyManager\keyBundle\Entity\tpenew $tpenew)
+    {
+        $this->tpenew[] = $tpenew;
+
+        return $this;
+    }
+
+    /**
+     * Remove tpenew
+     *
+     * @param \keyManager\keyBundle\Entity\tpenew $tpenew
+     */
+    public function removeTpenew(\keyManager\keyBundle\Entity\tpenew $tpenew)
+    {
+        $this->tpenew->removeElement($tpenew);
+    }
+
+
+    /**
      * Get tpenew
      *
      * @return \keyManager\keyBundle\Entity\tpenew 
@@ -164,4 +193,10 @@ class KeyNew
     {
         return $this->tpenew;
     }
+
+    function __toString() {
+        return $this->getKeyName();
+    }
+
+
 }

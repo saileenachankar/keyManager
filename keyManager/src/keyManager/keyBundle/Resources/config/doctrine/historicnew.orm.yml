@@ -1,0 +1,23 @@
+keyManager\keyBundle\Entity\historicnew:
+    type: entity
+    table: null
+    repositoryClass: keyManager\keyBundle\Entity\historicnewRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        keyID:
+            type: integer
+        keyStrtDate:
+            type: date
+        keyEndDate:
+            type: date
+        keyName:
+            type: string
+            length: '50'
+        keyIdTpe:
+            type: integer
+    lifecycleCallbacks: {  }

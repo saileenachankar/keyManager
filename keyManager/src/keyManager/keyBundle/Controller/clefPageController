@@ -1,0 +1,60 @@
+<?php
+
+namespace keyManager\keyBundle\Controller;
+
+use keyManager\keyBundle\Entity\KeyNew;
+use keyManager\keyBundle\Entity\Role;
+use keyManager\keyBundle\Entity\User;
+use keyManager\keyBundle\Form\KeyNewType;
+use keyManager\keyBundle\Form\UserType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+
+class clefPageController extends Controller
+{
+    public function clefProfileAction()
+    {
+        return $this->render('keyManagerkeyBundle:clefPage:clefProfile.html.twig');
+    }
+
+    public function addKeyAction()
+    {
+//        $em = $this->getDoctrine()->getManager();
+//        $clients = $em->getRepository('keyManagerkeyBundle:ClientNew')->findAll();
+//        $tpes = $em->getRepository('keyManagerkeyBundle:tpenew')->findAll();
+        $key = new KeyNew();
+        $form= $this->createForm($this->get('keymanager_keybundle_keynew'), $key);
+
+ //       return $this->render('keyManagerkeyBundle:clefPage:addKey.html.twig', array('clients'=>$clients, 'tpes'=>$tpes));
+       return $this->render('keyManagerkeyBundle:clefPage:addKey.html.twig', array('form'=>$form->createView()));
+
+    }
+
+    public function tpeAction(Request $request)
+    {
+//        $clientNew_id = $request->request->get('clientID');
+//        $em = $this->getDoctrine()->getManager();
+//        $tpes = $em->getRepository('keyManagerkeyBundle:tpenew')->findByClientID($clientNew_id);
+//        return new JsonResponse($tpes);
+        if (! $request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+
+        // Get the province ID
+        $id = $request->query->get('clientNew_id');
+
+        $result = array();
+
+        // Return a list of cities, based on the selected province
+        $repo = $this->getDoctrine()->getManager()->getRepository('keyManagerkeyBundle:tpenew');
+        $tpes = $repo->findByclientNew($id);
+        foreach ($tpes as $tpe) {
+            $result[$tpe->getTpeNum()] = $tpe->getId();
+        }
+
+        return new JsonResponse($result);
+    }
+}

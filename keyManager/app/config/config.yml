@@ -66,9 +66,12 @@ swiftmailer:
     spool:     { type: memory }
 
 services:
-    querytableExtension:
+    querykey.twig.querykeytable_extension:
         class: keyManager\keyBundle\Twig\Extension\querykeytableExtension
         tags:
             - {name: twig.extension}
         arguments:
-            doctrine: "@doctrine"
+             em: "@doctrine.orm.entity_manager"
+#            doctrine: "@doctrine"
+
+

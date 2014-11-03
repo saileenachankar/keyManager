@@ -1,0 +1,9 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+<br>
+
+voulez-vous supprimer: {{ todeleteclient.clientCompany }}?
+
+<form action="{{ path('DeleteClient_ClientProfile', {'id':todeleteclient.id}) }}" method="post">
+    <button type="submit" name="valider">supprimer</button>
+</form>

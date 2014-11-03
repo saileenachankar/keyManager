@@ -1,0 +1,14 @@
+<a href="{{ path('logout') }}">disconnect</a>
+
+
+<br>
+
+{% if error == 'yes' %}
+    ce numero du TPE déja existe.
+{% endif %}
+<br>
+
+<form action="{{ path('UpdateTpe_TpeProfile', {'id': tpe.id}) }}" method="post">
+    <input type="text" name="newNumTPE" placeholder="*nouveau nombre du TPE">
+    <button type="submit" name="valider">Valider</button>
+</form>

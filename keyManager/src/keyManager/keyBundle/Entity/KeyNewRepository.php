@@ -22,6 +22,16 @@ class KeyNewRepository extends EntityRepository
             ->getResult();
     }
 
+    public function selectRowWithtpenew($id)
+    {
+        $qb = $this->createQueryBuilder('k')
+            ->select('k')
+            ->where('k.tpenew = :id')
+            ->setParameter('id',$id);
+        return $qb->getQuery()
+            ->getResult();
+    }
+
     public function createQuery($string)
     {
         // TODO: Implement createQuery() method.

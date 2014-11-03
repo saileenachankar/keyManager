@@ -43,4 +43,16 @@ class ClientNewRepository extends EntityRepository
 
     }
 
+    public function getexceptselected($id)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c')
+            ->where('c.id != :id')
+            ->setParameter('id',$id);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+
 }

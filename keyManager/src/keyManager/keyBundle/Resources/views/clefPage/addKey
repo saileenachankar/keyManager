@@ -2,11 +2,6 @@
 
 <br>
 
-{% if error == 'yes' %}
-    Ce nom de clé déjà existe.
-{% endif %}
-<br>
-
 {#<form action="" method="post">#}
     {#<table>#}
         {#<tr><td>Societe client</td></tr>#}
@@ -44,20 +39,18 @@
     {#</table>#}
 {#</form>#}
 
-{#<form action="" method="post" novalidate="novalidate" role="form">#}
-    {#{{ form_row(form.startDate) }}#}
-    {#{{ form_row(form.endDate) }}#}
-    {#{{ form_row(form.keyName) }}#}
-    {#{{ form_label(form.client) }}#}
-    {#{{ form_errors(form.client) }}#}
-    {#{{ form_widget(form.client, {'id':'clientID'}) }}#}
-    {#{{ form_label(form.tpenew) }}#}
-    {#{{ form_errors(form.tpenew) }}#}
-    {#{{ form_widget(form.tpenew, {'id': 'tpeID'}) }}#}
+<form action="" method="post" novalidate="novalidate" role="form">
+    {{ form_row(form.startDate) }}
+    {{ form_row(form.endDate) }}
+    {{ form_row(form.keyName) }}
+    {{ form_label(form.client) }}
+    {{ form_errors(form.client) }}
+    {{ form_widget(form.client, {'id':'clientID'}) }}
+    {{ form_label(form.tpenew) }}
+    {{ form_errors(form.tpenew) }}
+    {{ form_widget(form.tpenew, {'id': 'tpeID'}) }}
 
-{#</form>#}
-
-{{ form(form) }}
+</form>
 
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -65,7 +58,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#keymanager_keybundle_keynew_clientNew').change(function(){
+        $('#clientID').change(function(){
             var val = $(this).val();
             $.ajax({
                 type: "POST",
@@ -73,10 +66,10 @@
                 success: function(data) {
 
                     // Remove current options
-                    $('#keymanager_keybundle_keynew_tpenew').html('');
+                    $('#tpeID').html('');
 
                     $.each(data, function(k, v) {
-                        $('#keymanager_keybundle_keynew_tpenew').append('<option value="' + v + '">' + k + '</option>');
+                        $('#tpeID').append('<option value="' + v + '">' + k + '</option>');
                     });
                 }
             });
@@ -87,29 +80,29 @@
 
 </script>
 
-{#{% block javascripts %}#}
-{#<script>#}
-{#$(function(){#}
-    {#$("#clientID").change(function(){#}
-        {#var data = {#}
-            {#clientNew_id: $(this).val()#}
-        {#};#}
-        {#$.ajax({#}
-            {#type: 'post',#}
-            {#url: '{{ path('tpe_ClefProfile') }}',#}
-            {#data: data,#}
-            {#success: function(data) {#}
-                {#var $tpe_selector = $('#tpeID');#}
-                {#$tpe_selector.html('<option>Tpe num</option>');#}
-                {#for (var i = 0, total = data.length; i < total; i++){#}
-                    {#$tpe_selector.append('<option value="' + data[i].id + '">' + data[i].name + '</option>');#}
-                {#}#}
-            {#}#}
-        {#})#}
-    {#})#}
+{% block javascripts %}
+<script>
+$(function(){
+    $("#clientID").change(function(){
+        var data = {
+            clientNew_id: $(this).val()
+        };
+        $.ajax({
+            type: 'post',
+            url: '{{ path('tpe_ClefProfile') }}',
+            data: data,
+            success: function(data) {
+                var $tpe_selector = $('#tpeID');
+                $tpe_selector.html('<option>Tpe num</option>');
+                for (var i = 0, total = data.length; i < total; i++){
+                    $tpe_selector.append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                }
+            }
+        })
+    })
 
-{#})#}
+})
 
 
-{#</script>#}
-{#{% endblock %}#}
+</script>
+{% endblock %}

@@ -14,12 +14,22 @@ class tpePageController extends Controller
         return $this->render('keyManagerkeyBundle:tpePage:tpeProfile.html.twig');
     }
 
-    public  function addTpeAction(Request $request)
+    public  function addTpeAction(Request $request, $id)
     {
         $error = '';
+        $selectedclient = '';
         $em = $this->getDoctrine()->getManager();
         $tpe = new tpenew();
-        $clientnames = $em->getRepository('keyManagerkeyBundle:ClientNew')->findAll();
+        if($id)
+        {
+            $selectedclient = $em->getRepository('keyManagerkeyBundle:ClientNew')->find($id);
+            $clientnames = $em->getRepository('keyManagerkeyBundle:ClientNew')->getexceptselected($id);
+        }
+        else
+        {
+            $clientnames = $em->getRepository('keyManagerkeyBundle:ClientNew')->findAll();
+        }
+        //$clientnames = $em->getRepository('keyManagerkeyBundle:ClientNew')->findAll();
         $post = Request::createFromGlobals();
         if($post->request->has('valider'))
         {
@@ -29,7 +39,7 @@ class tpePageController extends Controller
             if($tpenumcheck)
             {
                 $error = 'yes';
-                return $this->render('keyManagerkeyBundle:tpePage:addTpe.html.twig', array('clientnames'=> $clientnames,'error' => $error));
+                return $this->render('keyManagerkeyBundle:tpePage:addTpe.html.twig', array('clientnames'=> $clientnames,'error' => $error, 'selectedclient'=>$selectedclient));
             }
             else
             {
@@ -38,11 +48,38 @@ class tpePageController extends Controller
                 $tpe->setClientNew($client);
                 $em->persist($tpe);
                 $em->flush();
-                return $this->redirect($this->generateUrl("UpdateClient_ClientProfile"));
+                return $this->redirect($this->generateUrl("TpeProfile_homePage"));
             }
         }
 
 
-        return $this->render('keyManagerkeyBundle:tpePage:addTpe.html.twig', array('clientnames'=> $clientnames, 'error'=>$error));
+        return $this->render('keyManagerkeyBundle:tpePage:addTpe.html.twig', array('clientnames'=> $clientnames, 'error'=>$error, 'selectedclient'=>$selectedclient));
+    }
+
+    public function updateTpeAction($id, Request $request)
+    {
+        $error = '';
+        $em = $this->getDoctrine()->getManager();
+        $tpe = $em->getRepository('keyManagerkeyBundle:tpenew')->find($id);
+        $post = Request::createFromGlobals();
+        if($post->request->has('valider'))
+        {
+            $tpenum = $post->request->get('newNumTPE');
+            $tpenumcheck = $em->getRepository('keyManagerkeyBundle:tpenew')->findOneBytpeNum($tpenum);
+            if($tpenumcheck)
+            {
+                $error = 'yes';
+                return $this->render('keyManagerkeyBundle:tpePage:updateTpe.html.twig', array('tpe'=>$tpe, 'error'=>$error));
+            }
+            else
+            {
+                $tpe->setTpeNum($tpenum);
+                $em->persist($tpe);
+                $em->flush();
+                return $this->redirect($this->generateUrl("ClientProfile_homePage"));
+            }
+        }
+
+        return $this->render('keyManagerkeyBundle:tpePage:updateTpe.html.twig', array('tpe'=>$tpe, 'error'=>$error));
     }
 }

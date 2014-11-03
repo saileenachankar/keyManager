@@ -25,4 +25,12 @@ keyManager\keyBundle\Entity\KeyNew:
             joinColum:
                 nullable: false
 
+#    manyToOne:
+#            tpenew:
+#                targetEntity: tpenew
+#                inversedBy: keyNews
+#                joinColum:
+#                    name: tpenew_id
+#                    referencedColumnName: id
+
     lifecycleCallbacks: {  }

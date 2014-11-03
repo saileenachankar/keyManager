@@ -91,11 +91,16 @@ class ClientNew
     /**
      * Get tpenews
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTpenews()
     {
         return $this->tpenews;
+    }
+
+    public function __toString()
+    {
+        return $this->clientCompany;
     }
 
 }
